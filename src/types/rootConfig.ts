@@ -18,7 +18,7 @@ export const isApiKeyAuth = (t: Security): t is ApiKeyAuth => {
   return 'name' in t && 'in' in t
 }
 
-interface Info {
+export interface Info {
   title?: string
   version?: string
   description?: string
@@ -35,8 +35,8 @@ interface Info {
 }
 
 export interface rootConfig {
-  host?: string
-  basePath?: string
+  host: string
+  basePath: string
   info?: Info
   securityDefinitions?: {
     [key: string]: Security
