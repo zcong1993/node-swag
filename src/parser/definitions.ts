@@ -1,4 +1,9 @@
-import { TypescriptParser, Declaration, InterfaceDeclaration, EnumDeclaration } from 'typescript-parser'
+import {
+  TypescriptParser,
+  Declaration,
+  InterfaceDeclaration,
+  EnumDeclaration
+} from 'typescript-parser'
 import { Definitions, Definition } from '../types'
 
 const parser = new TypescriptParser()
@@ -11,19 +16,27 @@ const isEnumDeclaration = (t: Declaration): t is EnumDeclaration => {
   return 'members' in t
 }
 
-const avaliableTypes: string[] = ['string', 'number', 'boolean', 'object', 'array']
+const avaliableTypes: string[] = [
+  'string',
+  'number',
+  'boolean',
+  'object',
+  'array'
+]
 const ignoredTypes: string[] = ['any']
 
-export const parseDefinitions = async (filePath: string): Promise<Definitions> => {
+export const parseDefinitions = async (
+  filePath: string
+): Promise<Definitions> => {
   const res: Definitions = {}
   const { declarations } = await parser.parseFile(filePath, process.cwd())
   // console.log(declarations)
-  const enums: {[key: string]: string[]} = {}
+  const enums: { [key: string]: string[] } = {}
   const models: string[] = []
 
   declarations.forEach(declaration => {
     models.push(declaration.name)
-    if(isEnumDeclaration(declaration)) {
+    if (isEnumDeclaration(declaration)) {
       enums[declaration.name] = declaration.members
     }
   })
@@ -56,7 +69,7 @@ export const parseDefinitions = async (filePath: string): Promise<Definitions> =
           }
         } else if (models.includes(prop.type)) {
           m = {
-            '$ref': `#/definitions/${prop.type}`
+            $ref: `#/definitions/${prop.type}`
           }
         } else if (avaliableTypes.includes(prop.type)) {
           m = {

@@ -3,7 +3,7 @@ export interface Definition {
   required?: string[]
   items?: Definition
   enum?: string[]
-  '$ref'?: string
+  $ref?: string
   properties?: {
     [key: string]: Definition
   }

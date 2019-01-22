@@ -13,7 +13,7 @@
     "test": "npm run lint && npm run jest",
     "test:cov": "npm run lint && npm run jest:cov",
     "lint": "tslint -p .",
-    "format": "prettier --write **/*.{ts,json,md}",
+    "format": "prettier --write **/**/*.{ts,json,md}",
     "jest": "jest --detectOpenHandles --forceExit",
     "jest:cov": "jest --coverage --detectOpenHandles --forceExit",
     "publish": "npm run build"
