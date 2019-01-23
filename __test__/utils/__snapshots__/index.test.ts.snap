@@ -14,3 +14,63 @@ Object {
   "outType": "json",
 }
 `;
+
+exports[`should works well 2`] = `
+Object {
+  "basePath": "/",
+  "files": Array [],
+  "host": "localhost:8080",
+  "info": Object {
+    "title": "Swagger API",
+    "version": "v0.0.0",
+  },
+  "model": "test.ts",
+  "outDir": "./.swag",
+  "outType": "json",
+}
+`;
+
+exports[`should works well 3`] = `
+Object {
+  "basePath": "/v1",
+  "files": Array [],
+  "host": "localhost:8080",
+  "info": Object {
+    "title": "Swagger API",
+    "version": "v0.0.0",
+  },
+  "model": "test.ts",
+  "outDir": "./.swag",
+  "outType": "json",
+}
+`;
+
+exports[`should works well 4`] = `
+Object {
+  "basePath": "/",
+  "files": Array [],
+  "host": "localhost:8080",
+  "info": Object {
+    "title": "Swagger API",
+    "version": "v0.0.0",
+  },
+  "model": "test.ts",
+  "outDir": "./.swag",
+  "outType": "yaml",
+}
+`;
+
+exports[`should works well 5`] = `
+Object {
+  "basePath": "/",
+  "files": Array [],
+  "host": "localhost:8080",
+  "info": Object {
+    "title": "Swagger API",
+    "version": "v0.0.0",
+  },
+  "model": "test.ts",
+  "outDir": "./out",
+  "outType": "json",
+}
+`;
