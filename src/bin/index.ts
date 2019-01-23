@@ -24,7 +24,11 @@ cli.help()
 
 const { options } = cli.parse()
 
-const file = require.resolve(normalizePath(options['config']))
+const file = normalizePath(options['config'])
+if (!existsSync(file)) {
+  console.log(`config file ${options['config']} not exists.`)
+  process.exit(0)
+}
 const config: rootConfig = require(file)
 
 const run = async () => {
