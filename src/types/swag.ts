@@ -1,62 +1,72 @@
 import { Info, Security } from './rootConfig'
 import { Definitions } from './definitions'
 
-type Consumers =
+export type Consumers =
   | 'application/json'
   | 'text/json'
   | 'application/xml'
   | 'text/xml'
   | 'application/x-www-form-urlencoded'
-type Producers =
+export type Producers =
   | 'application/json'
   | 'text/json'
   | 'application/xml'
   | 'text/xml'
-type ins = 'path' | 'query' | 'body'
+export type ins = 'path' | 'query' | 'body' | 'header'
 
 interface Schema {
   $ref?: string
   type?: string
+  items?: Schema
 }
 
 export interface SwaggerHttpEndpoint {
-  tags: string[]
+  tags?: string[]
+  description?: string
   summary?: string
   operationId?: string
-  consumes: Consumers[]
-  produces: Producers[]
-  parameters: {
+  consumes: string[]
+  produces: string[]
+  security?: { [key: string]: any }
+  parameters?: {
     name: string
-    in: ins
+    in: string
     required: boolean
     description?: string
     type?: string
     maxLength?: number
     minLength?: number
+    schema?: Schema
   }[]
-  respones: {
+  responses: {
     [httpStatusCode: string]: {
-      description: string
+      description?: string
       schema?: Schema
     }
   }
-  deprecated: boolean
+  deprecated?: boolean
 }
 
-export interface Swag extends Info {
+export interface Path {
+  get?: SwaggerHttpEndpoint
+  post?: SwaggerHttpEndpoint
+  put?: SwaggerHttpEndpoint
+  patch?: SwaggerHttpEndpoint
+  delete?: SwaggerHttpEndpoint
+}
+
+export interface Paths {
+  [endpointPath: string]: Path
+}
+
+export interface Swag {
   swagger: string
   host: string
   basePath: string
+  info?: Info
   definitions?: Definitions
   securityDefinitions?: {
     [key: string]: Security
   }
-  paths: {
-    [endpointPath: string]: {
-      get?: SwaggerHttpEndpoint
-      post?: SwaggerHttpEndpoint
-      put?: SwaggerHttpEndpoint
-      delete?: SwaggerHttpEndpoint
-    }
-  }
+  paths: Paths
 }

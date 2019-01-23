@@ -1,8 +1,44 @@
-import { parseDefinitions } from './parser'
+import { parseDefinitions, parseFiles } from './parser'
+import { rootConfig, Swag } from './types'
 
-const run = async () => {
-  const res = await parseDefinitions('./zc/models.ts')
-  console.log(JSON.stringify(res))
+export const gen = async (config: rootConfig): Promise<Swag> => {
+  const {
+    host,
+    basePath,
+    info = {
+      title: 'Swagger API',
+      version: 'v0.0.0'
+    },
+    securityDefinitions,
+    files,
+    model
+  } = config
+  console.log(info)
+  const res: Swag = {
+    host,
+    basePath,
+    info,
+    paths: {},
+    swagger: '2.0'
+  }
+  if (model) {
+    const definitions = await parseDefinitions(model)
+    res.definitions = definitions
+  }
+
+  const paths = await parseFiles(files, config)
+
+  res.paths = paths
+
+  return res
 }
 
-run()
+// gen({
+//   host: 'localhost:8080',
+//   basePath: '/v1',
+//   files: ['./zc/test.js'],
+//   model: './zc/models.ts'
+// })
+//   .then(res => {
+//     console.log(JSON.stringify(res))
+//   })

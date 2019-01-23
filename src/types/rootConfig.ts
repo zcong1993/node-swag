@@ -41,4 +41,6 @@ export interface rootConfig {
   securityDefinitions?: {
     [key: string]: Security
   }
+  files: string[]
+  model?: string
 }
