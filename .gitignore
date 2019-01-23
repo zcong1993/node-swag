@@ -5,3 +5,5 @@ dist
 .idea
 coverage
 zc
+.swag.config.js
+.swag

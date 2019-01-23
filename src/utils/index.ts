@@ -1,3 +1,4 @@
+import { sync as fg } from 'fast-glob'
 import { rootConfig } from '../types'
 
 export const validateConfig = (config: rootConfig) => {
@@ -25,6 +26,17 @@ export const normalizeConfig = (config: rootConfig): rootConfig => {
     config.info.title = config.info.title || 'Swagger API'
     config.info.version = config.info.version || 'v0.0.0'
   }
+
+  if (config.outType !== 'yaml') {
+    config.outType = 'json'
+  }
+
+  if (!config.outDir) {
+    config.outDir = './.swag'
+  }
+
+  config.files.push('!**/node_modules')
+  config.files = fg(config.files)
 
   return config
 }

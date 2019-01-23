@@ -43,4 +43,6 @@ export interface rootConfig {
   }
   files: string[]
   model?: string
+  outDir?: string
+  outType?: 'json' | 'yaml'
 }

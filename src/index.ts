@@ -4,6 +4,7 @@ import { normalizeConfig } from './utils';
 
 export const gen = async (config: rootConfig): Promise<Swag> => {
   config = normalizeConfig(config)
+  // console.log(config)
 
   const res: Swag = {
     host: config.host,
@@ -27,7 +28,7 @@ export const gen = async (config: rootConfig): Promise<Swag> => {
 // gen({
 //   host: 'localhost:8080',
 //   basePath: '/v1',
-//   files: ['./zc/test.js'],
+//   files: ['./zc/*.js'],
 //   model: './zc/models.ts'
 // })
 //   .then(res => {
