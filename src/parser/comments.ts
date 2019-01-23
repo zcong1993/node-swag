@@ -79,9 +79,10 @@ export const parseCode = (code: string, config: rootConfig): Paths => {
     if (router.length !== 1) {
       return
     }
-    const c: Path = {}
+
     const r = router[0]
     const p: string = r.name
+    const c: Path = res[p] || {}
     const method = r.description
 
     const h: SwaggerHttpEndpoint = {
@@ -89,6 +90,8 @@ export const parseCode = (code: string, config: rootConfig): Paths => {
       produces: [],
       responses: {}
     }
+
+    // console.log(JSON.stringify(comment.tags))
 
     comment.tags.forEach(t => {
       switch (t.tag) {
@@ -116,15 +119,26 @@ export const parseCode = (code: string, config: rootConfig): Paths => {
           break
         case 'success':
         case 'failure': {
-          const reg = /([\d]+)[\s]+([\w\{\}]+)[\s]+([\w\-\.\/]+)[^"]*(.*)?/g
-          const res = reg.exec(normalizeString(t.source, t.tag))
+          // console.log(111, normalizeString(t.source, t.tag))
+          const source = normalizeString(t.source, t.tag)
+          const reg = /([\d]+)[\s]+([\w\{\}\[\]]+)[\s]+([\w\-\.\/]+)[^"]*(.*)?/g
+          const res = reg.exec(source)
+          h.responses[t.name] = {}
           if (!res) {
+            // ([\d]+)[\s]+[^"]*(.*)? for 204 "update success"
+            const simpleReg = /([\d]+)[\s]+[^"]*(.*)?/g
+            const simpleRes = simpleReg.exec(source)
+            if (!simpleReg) return
+            const simpleFields = simpleRes.filter(Boolean)
+            simpleFields.shift()
+            if (simpleFields.length !== 2) return
+            h.responses[t.name]['description'] = simpleFields[1]
             return
           }
           const fields = res.filter(Boolean)
           fields.shift()
           // console.log(fields, fields.length)
-          h.responses[t.name] = {}
+          // console.log(t.name)
           if (fields.length === 2) {
             // code desc
             h.responses[t.name]['description'] = fields[1]
@@ -146,7 +160,8 @@ export const parseCode = (code: string, config: rootConfig): Paths => {
               }
             } else if (fields[1].startsWith('[')) {
               h.responses[t.name]['schema'] = {
-                type: 'array'
+                type: 'array',
+                items: {}
               }
 
               if (fields[2].startsWith('def.')) {
@@ -196,18 +211,18 @@ export const parseCode = (code: string, config: rootConfig): Paths => {
               description: fields[4]
             })
           } else if (fields[1] === 'body') {
-            if (!fields[4].endsWith('def.')) {
+            if (!fields[2].startsWith('def.')) {
               return
             }
             const p = {
               name: fields[0],
-              type: fields[2],
+              // type: fields[2],
               in: fields[1],
               required: parseBool(fields[3]),
               description: fields[4],
               schema: {
                 type: 'object',
-                $ref: fields[4].replace('def.', '#/definitions/')
+                $ref: fields[2].replace('def.', '#/definitions/')
               }
             }
 
