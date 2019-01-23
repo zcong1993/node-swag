@@ -1,32 +1,23 @@
 import { parseDefinitions, parseFiles } from './parser'
 import { rootConfig, Swag } from './types'
+import { normalizeConfig } from './utils';
 
 export const gen = async (config: rootConfig): Promise<Swag> => {
-  const {
-    host,
-    basePath = '/',
-    info = {
-      title: 'Swagger API',
-      version: 'v0.0.0'
-    },
-    securityDefinitions,
-    files,
-    model
-  } = config
+  config = normalizeConfig(config)
 
   const res: Swag = {
-    host,
-    basePath,
-    info,
+    host: config.host,
+    basePath: config.basePath,
+    info: config.info,
     paths: {},
     swagger: '2.0'
   }
-  if (model) {
-    const definitions = await parseDefinitions(model)
+  if (config.model) {
+    const definitions = await parseDefinitions(config.model)
     res.definitions = definitions
   }
 
-  const paths = await parseFiles(files, config)
+  const paths = await parseFiles(config.files, config)
 
   res.paths = paths
 
