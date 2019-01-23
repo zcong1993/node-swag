@@ -7,7 +7,11 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "paths": {
+      "*": ["def/*"]
+    }
   },
   "exclude": ["node_modules", "**/*.test.ts", "dist", "zc"]
 }
