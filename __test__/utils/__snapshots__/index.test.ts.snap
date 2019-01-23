@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should works well 1`] = `
+Object {
+  "basePath": "/v1",
+  "files": Array [],
+  "host": "localhost:8080",
+  "info": Object {
+    "title": "Swagger API",
+    "version": "v0.0.0",
+  },
+  "model": "test.ts",
+  "outDir": "./.swag",
+  "outType": "json",
+}
+`;

@@ -1,9 +1,9 @@
 import { parseDefinitions, parseFiles } from './parser'
-import { rootConfig, Swag } from './types'
+import { RootConfig, Swag } from './types'
 import { normalizeConfig } from './utils';
 
-export const gen = async (config: rootConfig): Promise<Swag> => {
-  config = normalizeConfig(config)
+export const gen = async (c: RootConfig): Promise<Swag> => {
+  const config = normalizeConfig(c)
   // console.log(config)
 
   const res: Swag = {

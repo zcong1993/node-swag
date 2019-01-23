@@ -34,7 +34,7 @@ export interface Info {
   }
 }
 
-export interface rootConfig {
+export interface RootConfig {
   host: string
   basePath?: string
   info?: Info

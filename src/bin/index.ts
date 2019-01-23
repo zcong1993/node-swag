@@ -4,7 +4,7 @@ import { existsSync, writeFileSync } from 'fs'
 import * as cac from 'cac'
 import { sync as mkdirp } from 'mkdirp'
 import { stringify } from 'json2yaml'
-import { rootConfig } from '../types'
+import { RootConfig } from '../types'
 import { gen } from '../'
 
 const normalizePath = (p: string, root: string = process.cwd()): string =>
@@ -29,7 +29,7 @@ if (!existsSync(file)) {
   console.log(`config file ${options['config']} not exists.`)
   process.exit(0)
 }
-const config: rootConfig = require(file)
+const config: RootConfig = require(file)
 
 const run = async () => {
   const res = await gen(config)

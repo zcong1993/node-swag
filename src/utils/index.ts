@@ -1,7 +1,7 @@
 import { sync as fg } from 'fast-glob'
-import { rootConfig } from '../types'
+import { RootConfig } from '../types'
 
-export const validateConfig = (config: rootConfig) => {
+const validateConfig = (config: RootConfig) => {
   if (!config.host) {
     throw new Error('host is required')
   }
@@ -10,7 +10,7 @@ export const validateConfig = (config: rootConfig) => {
   }
 }
 
-export const normalizeConfig = (config: rootConfig): rootConfig => {
+export const normalizeConfig = (config: RootConfig): RootConfig => {
   validateConfig(config)
 
   if (!config.basePath) {

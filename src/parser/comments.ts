@@ -1,12 +1,12 @@
 import * as fs from 'fs'
 import { promisify } from 'util'
-import parse = require('comment-parser')
+import commentParser = require('comment-parser')
 
 import {
   Paths,
   Path,
   SwaggerHttpEndpoint,
-  rootConfig,
+  RootConfig,
   isApiKeyAuth
 } from '../types'
 
@@ -57,7 +57,7 @@ const merge = (...ins: object[]): object => {
 
 export const parseFile = async (
   fileName: string,
-  config: rootConfig
+  config: RootConfig
 ): Promise<Paths> => {
   const content: string = await readFile(fileName, 'utf8')
   return parseCode(content, config)
@@ -65,14 +65,14 @@ export const parseFile = async (
 
 export const parseFiles = async (
   fileNames: string[],
-  config: rootConfig
+  config: RootConfig
 ): Promise<Paths> => {
   const ps = await Promise.all(fileNames.map(f => parseFile(f, config)))
   return merge(...ps) as Paths
 }
 
-export const parseCode = (code: string, config: rootConfig): Paths => {
-  const comments = parse(code)
+export const parseCode = (code: string, config: RootConfig): Paths => {
+  const comments = commentParser(code)
   const res: Paths = {}
   comments.forEach(comment => {
     const router = comment.tags.filter(t => t.tag === 'router')
