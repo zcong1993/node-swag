@@ -1,6 +1,6 @@
 {
   "name": "@zcong/swag",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "generate swagger schema by comments",
   "main": "./dist/index.js",
   "files": [

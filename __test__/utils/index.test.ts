@@ -58,5 +58,7 @@ it('should throw error', () => {
     }
   ]
 
-  samples.forEach(sample => expect(() => normalizeConfig(sample as RootConfig)).toThrow())
+  samples.forEach(sample =>
+    expect(() => normalizeConfig(sample as RootConfig)).toThrow()
+  )
 })
