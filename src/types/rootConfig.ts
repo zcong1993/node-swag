@@ -36,7 +36,7 @@ export interface Info {
 
 export interface rootConfig {
   host: string
-  basePath: string
+  basePath?: string
   info?: Info
   securityDefinitions?: {
     [key: string]: Security

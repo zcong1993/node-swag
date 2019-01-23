@@ -4,7 +4,7 @@ import { rootConfig, Swag } from './types'
 export const gen = async (config: rootConfig): Promise<Swag> => {
   const {
     host,
-    basePath,
+    basePath = '/',
     info = {
       title: 'Swagger API',
       version: 'v0.0.0'
@@ -13,7 +13,7 @@ export const gen = async (config: rootConfig): Promise<Swag> => {
     files,
     model
   } = config
-  console.log(info)
+
   const res: Swag = {
     host,
     basePath,
