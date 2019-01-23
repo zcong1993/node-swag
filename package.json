@@ -1,6 +1,6 @@
 {
   "name": "@zcong/swag",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "generate swagger schema by comments",
   "main": "./dist/index.js",
   "files": [
@@ -8,7 +8,9 @@
     "src",
     "def"
   ],
-  "bin": "./dist/bin/index.js",
+  "bin": {
+    "node-swag": "./dist/bin/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "test": "npm run lint && npm run jest",
