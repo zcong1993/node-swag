@@ -53,7 +53,7 @@
   },
   "dependencies": {
     "cac": "^6.4.0",
-    "comment-parser": "^0.5.4",
+    "comment-parser": "^0.6.0",
     "fast-glob": "^3.0.0",
     "json2yaml": "^1.1.0",
     "mkdirp": "^0.5.1",

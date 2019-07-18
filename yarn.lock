@@ -658,10 +658,10 @@ commander@~2.17.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-comment-parser@^0.5.4:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/comment-parser/-/comment-parser-0.5.4.tgz#089840b9cccacad2b769b231ed43081d501b9487"
-  integrity sha512-0h7W6Y1Kb6zKQMJqdX41C5qf9ITCVIsD2qP2RaqDF3GFkXFrmuAuv5zUOuo19YzyC9scjBNpqzuaRQ2Sy5pxMQ==
+comment-parser@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/comment-parser/-/comment-parser-0.6.0.tgz#bcde52dc26a4bd317b609146b75b55b7cc3ddf68"
+  integrity sha512-Vjmfk6XSibJ/0gSIfKYI9lMr34Z+rwDYoX79Miy8m+WgUtYmFLVKqZv116NTBuLgdH/e9WUMXecZYWa8T3eyyQ==
 
 compare-versions@^3.2.1:
   version "3.4.0"
