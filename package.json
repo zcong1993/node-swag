@@ -29,7 +29,7 @@
     "@types/mkdirp": "^1.0.0",
     "@types/node": "^10.5.2",
     "jest": "^25.0.0",
-    "prettier": "^1.15.3",
+    "prettier": "^2.0.0",
     "ts-jest": "^25.0.0",
     "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.4.2",
